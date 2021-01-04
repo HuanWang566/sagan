@@ -37,7 +37,7 @@ dependencies {
 	compile project(':sagan-client')
 
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-	compile 'org.hibernate:hibernate-java8'
+	compile 'org.hibernate:hibernate-java8:5.2.17.Final'
 	compile 'org.springframework.boot:spring-boot-starter-data-redis'
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-validation'
@@ -59,6 +59,7 @@ dependencies {
 	compile 'com.rometools:rome:1.15.0'
 	// for use in serving redirects; see urlrewrite.xml
 	compile 'org.tuckey:urlrewritefilter:4.0.4'
+	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
 
 	// Thymeleaf is used as the template engine for serving HTML
 	implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
@@ -72,8 +73,9 @@ dependencies {
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
 	// datasource and connection pool dependencies
-	runtimeOnly 'org.postgresql:postgresql'
-	runtimeOnly 'com.h2database:h2'
+//	runtimeOnly 'org.postgresql:postgresql'
+//	runtimeOnly 'com.h2database:h2'
+//	runtimeOnly 'mysql:mysql-connector-java'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
@@ -128,4 +130,8 @@ publishing {
 			artifact stubsJar
 		}
 	}
+}
+
+bootRun {
+	jvmArgs = ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"]
 }

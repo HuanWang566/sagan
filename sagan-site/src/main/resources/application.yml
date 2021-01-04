@@ -3,6 +3,26 @@ info:
     profiles: ${spring.profiles.active:default}
 
 spring:
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://127.0.0.1:3306/sagan
+    username: root
+    password: admin
+    driverClassName: com.mysql.jdbc.Driver
+    #    driver-class-name: com.mysql.jdbc.Driver
+
+    hikari:
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+
+
+  flyway:
+    locations: classpath:/db/migration, classpath:/db/dev
+
   jpa:
     hibernate:
       ddl_auto: none
@@ -18,6 +38,8 @@ spring:
             # SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENTSECRET, respectively.
             client-id: fb06c006c2ed62fe9e8b
             client-secret: 164264e3f6d70c7c21713b7fa64225cb8d6107b2
+#            client-id: huanwang566
+#            client-secret: githup@githup123
             # Request the 'read: org' OAuth scope, so that we can check whether the
             # authenticated user belongs to the configured `sagan.site.github.team` for
             # admin access.
@@ -62,10 +84,28 @@ server:
 
 spring:
   profiles: standalone
-  datasource:
-    url: jdbc:h2:mem:sagan;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE
-  flyway:
-    locations: classpath:/db/migration, classpath:/db/dev
+#  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+#    url: jdbc:mysql://127.0.0.1:3306/sagan
+#    username: root
+#    password: admin
+#    driverClassName: com.mysql.jdbc.Driver
+##    driver-class-name: com.mysql.jdbc.Driver
+#
+#
+#    hikari:
+#      data-source-properties:
+#        cachePrepStmts: true
+#        prepStmtCacheSize: 250
+#        prepStmtCacheSqlLimit: 2048
+#        useServerPrepStmts: true
+#  jpa:
+#    database-platform: org.hibernate.dialect.MySQL5Dialect
+#    generate-ddl: true
+#    jpa.hibernate.ddl-auto: update
+
+#  flyway:
+#    locations: classpath:/db/migration, classpath:/db/dev
   resources:
     static_locations:
       - file:/Users/bclozel/workspace/sagan/sagan-client/build/dist/

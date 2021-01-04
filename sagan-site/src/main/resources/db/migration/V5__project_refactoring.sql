@@ -2,7 +2,7 @@
 -- Update project schema
 --
 ALTER TABLE project
-    RENAME COLUMN category TO status;
+    CHANGE category status VARCHAR(255);
 
 UPDATE project SET status='INCUBATING' where status='incubator';
 UPDATE project SET status='ACTIVE' where status='active';
@@ -10,15 +10,15 @@ UPDATE project SET status='COMMUNITY' where status='community';
 UPDATE project SET status='END_OF_LIFE' where status='attic';
 
 ALTER TABLE project
-    RENAME COLUMN raw_boot_config TO bootconfig_source;
+    CHANGE raw_boot_config bootconfig_source VARCHAR(255);
 ALTER TABLE project
-    RENAME COLUMN rendered_boot_config TO bootconfig_html;
+    CHANGE rendered_boot_config bootconfig_html VARCHAR(255);
 ALTER TABLE project
-    RENAME COLUMN raw_overview TO overview_source;
+    CHANGE raw_overview overview_source VARCHAR(255);
 ALTER TABLE project
-    RENAME COLUMN rendered_overview TO overview_html;
+    CHANGE rendered_overview overview_html VARCHAR(255);
 ALTER TABLE project
-    RENAME COLUMN display_order TO sort_order;
+    CHANGE display_order sort_order INT(11);
 ALTER TABLE project
     ADD COLUMN project_generations_lastmodified TIMESTAMP DEFAULT Now();
 
@@ -29,10 +29,10 @@ CREATE INDEX idx_project_name ON project(name);
 --
 ALTER TABLE project_release_list
     RENAME TO project_release;
+-- ALTER TABLE project_release
+--     DROP CONSTRAINT IF EXISTS project_release_list_pkey;
 ALTER TABLE project_release
-    DROP CONSTRAINT IF EXISTS project_release_list_pkey;
-ALTER TABLE project_release
-    RENAME COLUMN version_name TO version;
+    CHANGE version_name version VARCHAR(255);
 ALTER TABLE project_release
     ADD COLUMN id SERIAL;
 ALTER TABLE project_release
@@ -44,7 +44,7 @@ CREATE UNIQUE INDEX project_version
 
 -- Update release_status to String enum type
 ALTER TABLE project_release
-    RENAME COLUMN release_status TO release_status_old;
+    CHANGE release_status release_status_old INT(11);
 ALTER TABLE project_release
     ADD COLUMN release_status CHARACTER VARYING(255);
 UPDATE project_release
@@ -80,18 +80,18 @@ DROP TABLE project_repository;
 --
 ALTER TABLE project_sample_list
     RENAME TO project_sample;
-ALTER TABLE project_sample
-    DROP CONSTRAINT IF EXISTS project_sample_list_pkey;
+-- ALTER TABLE project_sample
+--     DROP CONSTRAINT IF EXISTS project_sample_list_pkey;
 ALTER TABLE project_sample
     ADD COLUMN id SERIAL;
 ALTER TABLE project_sample
-    RENAME COLUMN display_order TO sort_order;
+    CHANGE display_order sort_order INT(11);
 ALTER TABLE project_sample
-    ALTER COLUMN title SET NOT NULL;
+    CHANGE COLUMN title title VARCHAR(255) NOT NULL;
 ALTER TABLE project_sample
-    ALTER COLUMN description SET NOT NULL;
+    CHANGE COLUMN description description VARCHAR(255) NOT NULL;
 ALTER TABLE project_sample
-    ALTER COLUMN url SET NOT NULL;
+    CHANGE COLUMN url url VARCHAR(255) NOT NULL;
 
 
 --

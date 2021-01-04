@@ -1,7 +1,7 @@
 CREATE TABLE member_profile (
   id                   SERIAL                 NOT NULL PRIMARY KEY,
   avatar_url           CHARACTER VARYING(255),
-  bio                  VARCHAR,
+  bio                  VARCHAR(255),
   latitude             REAL,
   longitude            REAL,
   github_id            BIGINT,
@@ -14,7 +14,7 @@ CREATE TABLE member_profile (
   speakerdeck_username CHARACTER VARYING(255),
   twitter_username     CHARACTER VARYING(255),
   username             CHARACTER VARYING(255) NOT NULL,
-  video_embeds         VARCHAR,
+  video_embeds         VARCHAR(255),
   job_title            CHARACTER VARYING(255)
 );
 
@@ -26,10 +26,10 @@ CREATE TABLE post (
   draft            BOOLEAN                NOT NULL,
   format           CHARACTER VARYING(255),
   public_slug      CHARACTER VARYING(255) UNIQUE,
-  publish_at       TIMESTAMP,
-  raw_content      VARCHAR                NOT NULL,
-  rendered_content VARCHAR                NOT NULL,
-  rendered_summary VARCHAR                NOT NULL,
+  publish_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  raw_content      VARCHAR(255)           NOT NULL,
+  rendered_content VARCHAR(255)           NOT NULL,
+  rendered_summary VARCHAR (255)          NOT NULL,
   title            CHARACTER VARYING(255) NOT NULL,
   author_id        INTEGER                NOT NULL REFERENCES member_profile (id)
 );
