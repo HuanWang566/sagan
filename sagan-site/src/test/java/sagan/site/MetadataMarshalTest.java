@@ -70,11 +70,11 @@ public class MetadataMarshalTest {
 
   private static final String DIR_PREFIX = "/tmp/";
 
-  @PersistenceContext(unitName = "blPU")
-  protected EntityManager em;
+  @Autowired private EntityManager em;
 
-  @Autowired  public BlogController blogController;
-  @Autowired  public BlogAdminController blogAdminController;
+  @Autowired public BlogController blogController;
+
+  @Autowired public BlogAdminController blogAdminController;
 
   @Autowired private AnnotationConfigServletWebServerApplicationContext context;
 
@@ -165,7 +165,9 @@ public class MetadataMarshalTest {
     return FrontRecordingFilter.containerList;
   }
 
-  private Pair<Object, String> recordEntityManagerAndController() throws IOException {
+  private Pair<Object, String>
+
+  recordEntityManagerAndController() throws IOException {
     ExpansionConfig.set(20, false, false);
     ExpansionConfig.setCustomFilter(
         o -> o instanceof BeanFactory || o instanceof Environment || o instanceof MessageSource);
@@ -196,7 +198,7 @@ public class MetadataMarshalTest {
       beanDefinitionMap.put(beanDefinitionName, beanFactory.getBeanDefinition(beanDefinitionName));
     }
 
-    Objects.requireNonNull(beanDefinitionMap.get("blRequestCustomerResolver"));
+    // Objects.requireNonNull(beanDefinitionMap.get("blRequestCustomerResolver"));
     logger.warn(String.format("Expanding beanFactory of size %d", beanDefinitionMap.size()));
     final ClassInfoContainer beanDefinitionContainer =
         expandInstanceValues(beanDefinitionMap, "beanFactory");
