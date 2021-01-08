@@ -25,6 +25,7 @@ configurations {
 
 repositories {
 	mavenCentral()
+	mavenLocal()
 }
 
 dependencyManagement {
@@ -60,6 +61,23 @@ dependencies {
 	// for use in serving redirects; see urlrewrite.xml
 	compile 'org.tuckey:urlrewritefilter:4.0.4'
 	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
+
+	// for jpf configuration
+	compile group: 'cn.edu.sjtu.se.ipads', name: 'jpf-symbolic', version: '0.1'
+	compile group: 'cn.edu.sjtu.se.ipads', name: 'jpf-symbolic-classes', version: '0.1'
+	compile group: 'cn.edu.sjtu.se.ipads', name: 'jpf-symbolic-annotations', version: '0.1'
+	compile group: 'cn.edu.sjtu.se.ipads', name: 'jpf-annotations', version: '0.1'
+	compile group: 'cn.edu.sjtu.se.ipads', name: 'jpf', version: '0.1'
+	compile group: 'cn.edu.sjtu.se.ipads', name: 'jpf-classes', version: '0.1'
+
+	compile "com.google.guava:guava:16+"
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.3.2'
+	compile 'commons-io:commons-io:2.4'
+	compile 'com.mchange:mchange-commons-java:0.2.3.4'
+	compile 'org.hibernate:hibernate-envers:5.2.17.Final'
+	// https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.17.Final'
+
 
 	// Thymeleaf is used as the template engine for serving HTML
 	implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
@@ -135,3 +153,5 @@ publishing {
 bootRun {
 	jvmArgs = ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"]
 }
+
+

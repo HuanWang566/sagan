@@ -2,6 +2,37 @@ info:
   spring:
     profiles: ${spring.profiles.active:default}
 
+#compiler:
+#  host:
+#    - 'disable'
+
+compiler:
+  host: ''
+enable:
+  collect:
+    filter: true
+    input: true
+  sp:
+    apilist: ''
+  timing: false
+recorder:
+  hotpercent: 100
+  sample: 2
+  threshold: 0
+spdef:
+  dir: /home/huanwang/Documents/project/jpf-web/sql
+webserver:
+  host: 192.168.13.228
+  password: ''
+  user: ''
+
+database:
+  driver: com.mysql.jdbc.Driver
+  password: admin
+  user: root
+  url: jdbc:mysql://127.0.0.1:3306/sagan
+
+
 spring:
 
   datasource:

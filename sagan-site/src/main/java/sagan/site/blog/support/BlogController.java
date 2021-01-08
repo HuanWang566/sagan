@@ -37,6 +37,7 @@ import sagan.site.support.nav.Section;
 @Controller
 @RequestMapping("/blog")
 @Navigation(Section.BLOG)
+public
 class BlogController {
 
 	private static final DateTimeFormatter DAY_FORMATTER = DateTimeFormatter.ofPattern("MMMM dd, yyyy");

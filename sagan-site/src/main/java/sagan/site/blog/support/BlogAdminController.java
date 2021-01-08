@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/admin/blog")
+public
 class BlogAdminController {
 
     private final BlogService blogService;
