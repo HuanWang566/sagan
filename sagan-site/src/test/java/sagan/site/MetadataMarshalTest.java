@@ -160,7 +160,7 @@ public class MetadataMarshalTest {
     assert !enableCollectInput;
     assert enableCollectFilter;
     testRestTemplate.getForEntity(
-        "https://localhost:" + randomServerPort + "/blog", String.class);
+        "http://localhost:" + randomServerPort + "/blog", String.class);
     assert FrontRecordingFilter.FILTER_COLLECTED : "Fail to record filter info";
     return FrontRecordingFilter.containerList;
   }
