@@ -112,6 +112,11 @@ dependencies {
 test {
 	useJUnitPlatform()
 	outputs.dir snippetsDir
+
+	minHeapSize = "64g"
+	maxHeapSize = "64g"
+
+//	jvmArgs  "-javaagent:/home/gansen/Code/jpf-web/broadleaf-react-benchmark/dynamic-bytecode-recorder/out/artifacts/shabby_bytecode_recorder_jar/shabby-bytecode-recorder.jar"
 }
 
 asciidoctor {
