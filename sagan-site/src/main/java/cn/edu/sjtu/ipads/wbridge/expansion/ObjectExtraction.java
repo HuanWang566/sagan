@@ -25,6 +25,7 @@ import org.hibernate.persister.entity.JoinedSubclassEntityPersister;
 import org.hibernate.resource.jdbc.spi.EmptyStatementInspector;
 import org.hibernate.resource.jdbc.spi.StatementInspector;
 import org.springframework.aop.framework.Advised;
+import org.springframework.boot.origin.OriginTrackedValue;
 import org.springframework.util.ReflectionUtils;
 
 import java.io.FileOutputStream;
@@ -198,7 +199,7 @@ public abstract class ObjectExtraction {
         || instance instanceof Number
         || instance instanceof Boolean
         || instance instanceof Character
-        || instance instanceof CharSequence) {
+        || ((instance instanceof CharSequence) && ! instance.getClass().toString().contains("OriginTrackedCharSequence"))) {
       classInfo.setAttribute(CONCRETE_VALUE_ATTR, instance);
       return classInfo;
     } else if (instanceClass.isArray()) {
