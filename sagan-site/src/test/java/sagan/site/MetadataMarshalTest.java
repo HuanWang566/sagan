@@ -156,7 +156,7 @@ public class MetadataMarshalTest {
     final HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
     WBridgeSaganParamUtils.SP_URI_LIST.clear();
     WBridgeSaganParamUtils.SP_URI_LIST.add(
-        org.apache.commons.lang3.tuple.Triple.of("/blog", "GET", "getBlog"));
+        org.apache.commons.lang3.tuple.Triple.of("/blog", "GET", "GetBlog"));
     assert !enableCollectInput;
     assert enableCollectFilter;
     testRestTemplate.getForEntity(
