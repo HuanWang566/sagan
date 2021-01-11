@@ -10,10 +10,10 @@ compiler:
   host: ''
 enable:
   collect:
-    filter: true
+    filter: false
     input: true
   sp:
-    apilist: ''
+    apilist: 'GetBlog'
   timing: false
 recorder:
   hotpercent: 100
